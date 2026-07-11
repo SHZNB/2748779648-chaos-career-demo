@@ -24,6 +24,15 @@ body {
   margin: 0;
   color: var(--ink);
   background: #dff3ff;
+  overflow: hidden;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -3;
+  background: #dff3ff;
 }
 
 button,
@@ -37,13 +46,23 @@ button {
 }
 
 .experience-shell {
+  position: relative;
   min-height: 100vh;
   padding: 10px;
-  background:
-    radial-gradient(circle at 8% 88%, rgba(69, 196, 238, 0.85) 0 5%, transparent 5.2%),
-    radial-gradient(circle at 87% 82%, rgba(255, 216, 92, 0.42) 0 8%, transparent 8.4%),
-    linear-gradient(180deg, #dff3ff 0%, #f7fbff 34%, #d8f5d4 100%);
+  background: transparent;
   overflow: hidden;
+}
+
+.concept-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  object-position: center;
+  filter: saturate(1.03) brightness(1.02);
+  pointer-events: none;
 }
 
 .hud-header {
@@ -1357,5 +1376,320 @@ button {
 
   .status-row {
     grid-template-columns: 24px 68px 1fr;
+  }
+}
+
+/* Reference alignment pass: match the Monopoly-style concept image. */
+@media (min-width: 1081px) {
+  .experience-shell {
+    padding: 0;
+    height: 100vh;
+  }
+
+  .hud-header {
+    height: 76px;
+    padding: 12px 18px;
+    border-radius: 0 0 24px 24px;
+    background: rgba(255, 255, 255, 0.46);
+    box-shadow: none;
+  }
+
+  .brand-orbit {
+    width: 58px;
+    height: 46px;
+  }
+
+  .brand h1 {
+    font-size: 31px;
+    font-weight: 950;
+  }
+
+  .brand p {
+    font-size: 13px;
+  }
+
+  .header-actions {
+    gap: 16px;
+  }
+
+  .soft-button {
+    min-width: 112px;
+    background: rgba(255, 255, 255, 0.68);
+  }
+
+  .register-button {
+    min-width: 158px;
+    min-height: 48px;
+    font-size: 18px;
+  }
+
+  .board-world {
+    grid-template-columns: 280px minmax(760px, 1fr) 330px;
+    gap: 18px;
+    min-height: calc(100vh - 76px);
+    padding: 16px 10px 0;
+  }
+
+  .board-world::before,
+  .board-world::after,
+  .main-playfield::before,
+  .main-playfield::after {
+    display: none;
+  }
+
+  .current-card {
+    height: calc(100vh - 186px);
+    max-height: 640px;
+    margin-top: 0;
+    padding: 14px 12px;
+    border-radius: 18px;
+    background: rgba(246, 251, 255, 0.82);
+  }
+
+  .student-profile {
+    margin: 12px 0 8px;
+    border-radius: 14px;
+  }
+
+  .identity-controls {
+    display: none;
+  }
+
+  .status-list {
+    max-height: calc(100vh - 355px);
+  }
+
+  .status-row {
+    min-height: 38px;
+    grid-template-columns: 24px 84px 1fr;
+  }
+
+  .main-playfield {
+    min-height: calc(100vh - 78px);
+    padding-bottom: 198px;
+  }
+
+  .life-track {
+    width: min(930px, 98%);
+    height: 118px;
+    margin-top: 0;
+    margin-bottom: 0;
+    align-items: start;
+    gap: 8px;
+  }
+
+  .stage-tab {
+    display: grid;
+    min-height: 78px;
+    align-content: center;
+    justify-items: center;
+    gap: 2px;
+    border-width: 4px;
+    border-radius: 17px;
+    font-size: 22px;
+    text-shadow: 0 2px 4px rgba(25, 45, 70, 0.22);
+  }
+
+  .stage-icon {
+    display: block;
+    height: 26px;
+    font-size: 27px;
+    line-height: 1;
+    filter: drop-shadow(0 4px 4px rgba(27, 54, 80, 0.22));
+  }
+
+  .stage-tab:nth-child(1) {
+    transform: translateY(86px) rotate(-12deg);
+  }
+
+  .stage-tab:nth-child(2) {
+    transform: translateY(28px) rotate(-5deg);
+  }
+
+  .stage-tab:nth-child(3) {
+    transform: translateY(16px) rotate(-2deg);
+  }
+
+  .stage-tab:nth-child(4) {
+    min-height: 90px;
+    transform: translateY(4px);
+    font-size: 28px;
+  }
+
+  .stage-tab:nth-child(5) {
+    transform: translateY(16px) rotate(4deg);
+  }
+
+  .stage-tab:nth-child(6) {
+    transform: translateY(28px) rotate(8deg);
+  }
+
+  .stage-tab:nth-child(7) {
+    transform: translateY(86px) rotate(12deg);
+  }
+
+  .stage-tab.active::after {
+    bottom: -26px;
+  }
+
+  .vr-card {
+    width: min(790px, 96%);
+    margin-top: 6px;
+    padding: 8px;
+    border-radius: 28px;
+    background: rgba(255, 255, 255, 0.9);
+    transform: translateX(38px);
+  }
+
+  .vr-window {
+    height: min(43vh, 412px);
+    min-height: 360px;
+    border-width: 5px;
+    border-radius: 22px;
+  }
+
+  .scene-school,
+  .scene-campus,
+  .scene-career {
+    background-image:
+      linear-gradient(180deg, rgba(255, 202, 138, 0.08), rgba(13, 37, 64, 0.32)),
+      url("./assets/concept.png");
+    background-size: 1672px 940px;
+    background-repeat: no-repeat;
+  }
+
+  .scene-school {
+    background-position: -440px -205px;
+  }
+
+  .scene-campus {
+    background-position: -455px -205px;
+  }
+
+  .scene-career {
+    background-position: -470px -205px;
+  }
+
+  .scene::before,
+  .scene::after {
+    display: none;
+  }
+
+  .vr-center-mark {
+    width: 116px;
+    height: 116px;
+    font-size: 31px;
+  }
+
+  .future-scene-label {
+    left: 18px;
+    bottom: 18px;
+  }
+
+  .future-person {
+    bottom: 24px;
+  }
+
+  .accelerator {
+    width: min(790px, 96%);
+    margin-top: 10px;
+    border-radius: 22px;
+    background: rgba(246, 251, 255, 0.9);
+    transform: translateX(38px);
+  }
+
+  .robot-panel {
+    height: calc(100vh - 216px);
+    max-height: 620px;
+    margin-top: 0;
+    padding: 14px 12px;
+    border-radius: 20px;
+    background: rgba(246, 251, 255, 0.84);
+  }
+
+  .chat-feed {
+    max-height: calc(100vh - 428px);
+  }
+
+  .message {
+    font-size: 12px;
+  }
+
+  .decision-pad {
+    gap: 6px;
+  }
+
+  .decision-pad button {
+    min-height: 34px;
+    padding: 0 6px;
+  }
+
+  .decision-pad button.selected {
+    background: #baf1df;
+  }
+
+  .future-strip {
+    left: 230px;
+    right: 230px;
+    bottom: 8px;
+    padding: 8px 22px 10px;
+    border-radius: 18px 18px 0 0;
+    background: rgba(246, 251, 255, 0.9);
+  }
+
+  .metrics {
+    grid-template-columns: repeat(10, minmax(82px, 1fr));
+    gap: 10px;
+  }
+
+  .metric {
+    min-height: 96px;
+    border-radius: 10px;
+  }
+
+  .metric b {
+    display: block;
+    margin-top: 5px;
+    font-size: 27px;
+    line-height: 1;
+  }
+
+  .metric strong {
+    min-height: 29px;
+    margin-top: 6px;
+    font-size: 14px;
+  }
+
+  .metric small {
+    display: block;
+    color: #74889f;
+    font-size: 12px;
+    font-weight: 800;
+  }
+
+  .start-sign {
+    left: 305px;
+    top: 310px;
+  }
+
+  .future-sign {
+    right: 360px;
+    top: 440px;
+  }
+
+  .dice {
+    right: 68px;
+    bottom: 28px;
+  }
+}
+
+@media (min-width: 1500px) {
+  .board-world {
+    grid-template-columns: 280px minmax(790px, 1fr) 330px;
+  }
+
+  .vr-card,
+  .accelerator {
+    width: 790px;
   }
 }
