@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>混沌生涯职业体验舱 Demo</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="experience-shell">
+      <header class="hud-header">
+        <div class="brand">
+          <span class="brand-orbit"></span>
+          <div>
+            <h1>混沌生涯职业体验舱</h1>
+            <p>你的选择，决定无数可能的未来</p>
+          </div>
+        </div>
+        <div class="header-actions">
+          <button class="icon-button" aria-label="声音">♪</button>
+          <button class="soft-button">帮助</button>
+          <button class="soft-button">登录</button>
+          <button class="register-button" id="openRegister">注册体验 <span>›</span></button>
+        </div>
+      </header>
+
+      <section class="board-world">
+        <aside class="current-card">
+          <div class="card-title">
+            <span class="info-dot">i</span>
+            <h2>当前状态</h2>
+          </div>
+          <div class="student-profile">
+            <div class="student-avatar">
+              <img id="userPhotoPreview" alt="" />
+              <span class="hair"></span>
+              <span class="face"></span>
+            </div>
+            <div>
+              <strong id="studentName">大一新生</strong>
+              <p>人生体验值：<span class="stars">★★★☆☆</span></p>
+              <p>成就点：<b id="seedLabel">120</b></p>
+            </div>
+          </div>
+
+          <div class="identity-controls">
+            <label class="upload-card">
+              <span>上传本人照片</span>
+              <input id="photoUpload" type="file" accept="image/*" />
+            </label>
+            <label>
+              服装
+              <select id="clothingStyle">
+                <option value="campus">校园休闲</option>
+                <option value="formal">职场正装</option>
+                <option value="research">科研白袍</option>
+                <option value="creative">创意潮流</option>
+              </select>
+            </label>
+            <label>
+              身材
+              <select id="bodyShape">
+                <option value="balanced">匀称</option>
+                <option value="slim">偏瘦</option>
+                <option value="athletic">运动型</option>
+                <option value="strong">壮实</option>
+              </select>
+            </label>
+          </div>
+
+          <form id="profileForm" class="status-list">
+            <label class="status-row">
+              <span class="row-icon blue">+</span>
+              <span>年龄</span>
+              <input name="age" type="number" min="6" max="80" value="19" />
+            </label>
+            <label class="status-row">
+              <span class="row-icon sky">◎</span>
+              <span>容貌</span>
+              <input name="appearance" type="range" min="1" max="100" value="78" />
+            </label>
+            <label class="status-row">
+              <span class="row-icon indigo">▦</span>
+              <span>住房</span>
+              <select name="housing">
+                <option>学校宿舍</option>
+                <option>合租公寓</option>
+                <option>家庭同住</option>
+                <option>自有住房</option>
+              </select>
+            </label>
+            <label class="status-row">
+              <span class="row-icon gold">¥</span>
+              <span>收入</span>
+              <input name="income" type="number" min="0" max="200000" value="1200" />
+            </label>
+            <label class="status-row">
+              <span class="row-icon pink">☺</span>
+              <span>幸福感</span>
+              <input name="happiness" type="range" min="1" max="100" value="72" />
+            </label>
+            <label class="status-row">
+              <span class="row-icon green">♥</span>
+              <span>身体状态</span>
+              <input name="health" type="range" min="1" max="100" value="82" />
+            </label>
+            <label class="status-row">
+              <span class="row-icon amber">$</span>
+              <span>财富</span>
+              <input name="wealth" type="number" min="0" max="10000000" value="3600" />
+            </label>
+            <label class="status-row">
+              <span class="row-icon rose">❤</span>
+              <span>婚姻</span>
+              <select name="marriage">
+                <option>未婚</option>
+                <option>恋爱中</option>
+                <option>已婚</option>
+              </select>
+            </label>
+            <label class="status-row">
+              <span class="row-icon violet">♣</span>
+              <span>家庭</span>
+              <input name="family" type="range" min="1" max="100" value="76" />
+            </label>
+            <label class="status-row">
+              <span class="row-icon peach">○</span>
+              <span>子女</span>
+              <input name="children" type="number" min="0" max="4" value="0" />
+            </label>
+            <label class="status-row">
+              <span class="row-icon book">▣</span>
+              <span>学习成绩</span>
+              <input name="grade" type="range" min="1" max="100" value="82" />
+            </label>
+          </form>
+          <button class="details-button">状态详情</button>
+        </aside>
+
+        <section class="main-playfield">
+          <nav class="life-track" aria-label="生涯阶段">
+            <button class="stage-tab active" data-stage="小学"><span>小学</span></button>
+            <button class="stage-tab" data-stage="初中"><span>初中</span></button>
+            <button class="stage-tab" data-stage="高中"><span>高中</span></button>
+            <button class="stage-tab main-node" data-stage="大学"><span>大学</span></button>
+            <button class="stage-tab" data-stage="研究生"><span>研究生</span></button>
+            <button class="stage-tab heart-node" data-stage="恋爱"><span>恋爱</span></button>
+            <button class="stage-tab work-node" data-stage="工作"><span>工作</span></button>
+          </nav>
+
+          <div class="vr-card">
+            <div class="vr-window">
+              <div class="panorama" id="panorama">
+                <div class="scene scene-school"></div>
+                <div class="scene scene-campus"></div>
+                <div class="scene scene-career"></div>
+              </div>
+              <div class="vr-badge">∞ 360°未来视景</div>
+              <div class="vr-center-mark">360°</div>
+              <div class="vr-tools">
+                <span>□</span>
+                <span>⚙</span>
+              </div>
+              <div class="vr-dock">
+                <button>客厅</button>
+                <button>职场</button>
+                <button>社区</button>
+                <button>旅行</button>
+              </div>
+              <div class="future-person" id="futurePerson">
+                <div class="future-head">
+                  <img id="futurePhoto" alt="" />
+                  <span></span>
+                </div>
+                <div class="future-body">
+                  <span class="jacket"></span>
+                  <span class="legs"></span>
+                </div>
+                <small id="futureAgeLabel">23岁未来形象</small>
+              </div>
+              <div class="future-scene-label" id="futureSceneLabel">校园成长视角</div>
+            </div>
+          </div>
+
+          <div class="accelerator">
+            <button class="play-button" aria-label="开始加速">▶</button>
+            <div class="accelerator-main">
+              <div class="accelerator-head">
+                <h2>未来加速轴</h2>
+                <p>拖动滑块，快速体验未来</p>
+                <output id="yearOutput">2030</output>
+              </div>
+              <input id="yearSlider" type="range" min="2026" max="2056" value="2030" />
+              <div class="year-marks">
+                <span>现在</span>
+                <span>1年</span>
+                <span>3年</span>
+                <span>5年</span>
+                <span>10年</span>
+                <span>15年</span>
+                <span>20年</span>
+                <span>30年</span>
+              </div>
+            </div>
+            <button class="event-button">随机事件</button>
+          </div>
+
+          <div class="stage-copy">
+            <h2 id="stageTitle">小学阶段 · 好奇心起点</h2>
+            <p id="stageStory">你正在探索兴趣、习惯与支持系统。今天的小决定，会在未来悄悄改变路线。</p>
+          </div>
+        </section>
+
+        <aside class="robot-panel">
+          <div class="robot-title">
+            <div class="robot-avatar"><span></span><span></span></div>
+            <div>
+              <h2>混沌生涯机器人</h2>
+              <p>在线 · 职业规划顾问</p>
+            </div>
+            <button aria-label="关闭">×</button>
+          </div>
+          <div class="chat-feed" id="chatFeed"></div>
+          <div class="chat-input">
+            <input placeholder="输入你的问题..." />
+            <button>发送</button>
+          </div>
+          <div class="decision-pad">
+            <button data-decision="学习投入">职业推荐</button>
+            <button data-decision="社交拓展">提升建议</button>
+            <button data-decision="健康优先">风险预警</button>
+            <button data-decision="创业冒险">事件卡</button>
+          </div>
+        </aside>
+
+        <section class="future-strip">
+          <div class="strip-title">
+            <h2>未来模拟卡片</h2>
+            <span id="impactTag">因果影响 +12</span>
+          </div>
+          <div class="metrics" id="metrics"></div>
+        </section>
+
+        <div class="map-sign start-sign">起点<br />选择你的人生路线</div>
+        <div class="map-sign future-sign">未来无限<br />由你掌控</div>
+        <div class="dice" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div>
+      </section>
+    </main>
+
+    <dialog id="registerDialog" class="register-dialog">
+      <form method="dialog" id="registerForm">
+        <button class="close-dialog" value="cancel" aria-label="关闭">×</button>
+        <h2>注册体验舱</h2>
+        <p>创建一个体验档案，系统会为你生成专属混沌生涯种子。</p>
+        <label>
+          昵称
+          <input name="nickname" required placeholder="例如：小庄同学" />
+        </label>
+        <label>
+          当前身份
+          <select name="role">
+            <option>大学生</option>
+            <option>高中生</option>
+            <option>研究生</option>
+            <option>职场新人</option>
+          </select>
+        </label>
+        <label>
+          个人照片
+          <input id="dialogPhotoUpload" type="file" accept="image/*" />
+        </label>
+        <label>
+          未来服装
+          <select id="dialogClothingStyle">
+            <option value="campus">校园休闲</option>
+            <option value="formal">职场正装</option>
+            <option value="research">科研白袍</option>
+            <option value="creative">创意潮流</option>
+          </select>
+        </label>
+        <label>
+          身材设定
+          <select id="dialogBodyShape">
+            <option value="balanced">匀称</option>
+            <option value="slim">偏瘦</option>
+            <option value="athletic">运动型</option>
+            <option value="strong">壮实</option>
+          </select>
+        </label>
+        <menu>
+          <button value="cancel">稍后再说</button>
+          <button class="register-button" value="default">完成注册</button>
+        </menu>
+      </form>
+    </dialog>
+
+    <script src="./script.js?v=20260711-redesign"></script>
+  </body>
+</html>
