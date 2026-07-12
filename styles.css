@@ -1384,6 +1384,14 @@ button {
   .experience-shell {
     padding: 0;
     height: 100vh;
+    background:
+      radial-gradient(circle at 10% 86%, rgba(75, 194, 239, 0.9) 0 5%, transparent 5.3%),
+      radial-gradient(circle at 88% 82%, rgba(255, 218, 85, 0.46) 0 8%, transparent 8.4%),
+      linear-gradient(180deg, #dff3ff 0%, #f6fbff 36%, #d9f3c6 100%);
+  }
+
+  .concept-backdrop {
+    display: none;
   }
 
   .hud-header {
@@ -1430,15 +1438,62 @@ button {
     padding: 16px 10px 0;
   }
 
-  .board-world::before,
-  .board-world::after,
-  .main-playfield::before,
+  .board-world::before {
+    display: block;
+    inset: -76px -30px -40px;
+    background:
+      radial-gradient(circle at 10% 82%, #54c9f4 0 4.5%, transparent 4.8%),
+      radial-gradient(circle at 10% 82%, rgba(255, 255, 255, 0.8) 0 6%, transparent 6.2%),
+      radial-gradient(circle at 89% 88%, rgba(255, 219, 93, 0.7) 0 6.5%, transparent 6.8%),
+      linear-gradient(132deg, transparent 0 31%, rgba(255, 255, 255, 0.78) 31.2% 33.2%, transparent 33.5%),
+      linear-gradient(54deg, transparent 0 64%, rgba(255, 255, 255, 0.62) 64.2% 66.2%, transparent 66.5%),
+      linear-gradient(135deg, rgba(255, 255, 255, 0.44) 0 2%, transparent 2.2% 8%, rgba(255, 255, 255, 0.36) 8.2% 10%, transparent 10.2%),
+      linear-gradient(160deg, rgba(132, 204, 98, 0.88), rgba(206, 239, 158, 0.92));
+  }
+
+  .board-world::after {
+    display: block;
+    background:
+      linear-gradient(90deg, transparent 0 9%, rgba(48, 93, 140, 0.12) 9.2% 9.5%, transparent 9.7%),
+      linear-gradient(180deg, transparent 0 14%, rgba(48, 93, 140, 0.1) 14.2% 14.5%, transparent 14.8%);
+    background-size: 180px 180px;
+    opacity: 0.28;
+  }
+
+  .main-playfield::before {
+    display: block;
+    content: "";
+    position: absolute;
+    z-index: 1;
+    left: -14px;
+    right: -14px;
+    top: -28px;
+    height: 520px;
+    border-radius: 50%;
+    background:
+      repeating-conic-gradient(from 238deg at 50% 54%, rgba(255, 255, 255, 0.0) 0deg 10deg, rgba(255, 255, 255, 0.28) 10deg 13deg, rgba(255, 255, 255, 0.0) 13deg 22deg),
+      radial-gradient(ellipse at 50% 54%, transparent 0 34%, rgba(255, 255, 255, 0.98) 34.4% 41.5%, rgba(255, 229, 144, 0.9) 41.8% 45.2%, transparent 45.6%),
+      radial-gradient(ellipse at 50% 54%, rgba(255, 231, 145, 0.5) 0 46%, transparent 46.5%);
+    filter: drop-shadow(0 18px 28px rgba(50, 90, 120, 0.12));
+  }
+
   .main-playfield::after {
-    display: none;
+    display: block;
+    content: "";
+    position: absolute;
+    z-index: 1;
+    inset: 48px 18px auto;
+    height: 360px;
+    border-radius: 48%;
+    background:
+      repeating-conic-gradient(from 252deg at 50% 56%, rgba(255, 255, 255, 0.86) 0deg 13deg, rgba(234, 244, 255, 0.88) 13deg 22deg);
+    clip-path: ellipse(49% 42% at 50% 50%);
+    opacity: 0.82;
+    pointer-events: none;
   }
 
   .current-card {
-    height: calc(100vh - 186px);
+    height: auto;
     max-height: 640px;
     margin-top: 0;
     padding: 14px 12px;
@@ -1456,12 +1511,14 @@ button {
   }
 
   .status-list {
-    max-height: calc(100vh - 355px);
+    max-height: none;
+    overflow: visible;
   }
 
   .status-row {
-    min-height: 38px;
+    min-height: 35px;
     grid-template-columns: 24px 84px 1fr;
+    padding: 6px 10px;
   }
 
   .main-playfield {
@@ -1470,24 +1527,63 @@ button {
   }
 
   .life-track {
-    width: min(930px, 98%);
-    height: 118px;
+    position: relative;
+    z-index: 12;
+    width: min(980px, 100%);
+    height: 235px;
     margin-top: 0;
     margin-bottom: 0;
     align-items: start;
-    gap: 8px;
+    gap: 0;
+    pointer-events: none;
+  }
+
+  .life-track::before {
+    content: "";
+    position: absolute;
+    z-index: 0;
+    left: 12px;
+    right: 12px;
+    top: 90px;
+    height: 90px;
+    border: 18px solid rgba(255, 255, 255, 0.92);
+    border-bottom-color: transparent;
+    border-radius: 50% 50% 0 0;
+    filter: drop-shadow(0 12px 18px rgba(50, 90, 120, 0.14));
+    pointer-events: none;
+  }
+
+  .life-track::after {
+    content: "";
+    position: absolute;
+    z-index: 0;
+    left: 38px;
+    right: 38px;
+    top: 112px;
+    height: 52px;
+    border: 4px dashed rgba(246, 179, 61, 0.7);
+    border-bottom-color: transparent;
+    border-radius: 50% 50% 0 0;
+    pointer-events: none;
   }
 
   .stage-tab {
+    position: relative;
+    z-index: 1;
     display: grid;
-    min-height: 78px;
+    min-height: 110px;
     align-content: center;
     justify-items: center;
     gap: 2px;
-    border-width: 4px;
-    border-radius: 17px;
+    border: 0;
+    border-radius: 20px;
+    border: 4px solid rgba(255, 255, 255, 0.96);
+    color: white;
+    background: linear-gradient(145deg, #79c669, #53ae53) !important;
+    box-shadow: 0 14px 22px rgba(38, 84, 120, 0.18);
     font-size: 22px;
     text-shadow: 0 2px 4px rgba(25, 45, 70, 0.22);
+    pointer-events: auto;
   }
 
   .stage-icon {
@@ -1495,15 +1591,24 @@ button {
     height: 26px;
     font-size: 27px;
     line-height: 1;
+    opacity: 1;
     filter: drop-shadow(0 4px 4px rgba(27, 54, 80, 0.22));
   }
 
+  .stage-tab:nth-child(1) { background: linear-gradient(145deg, #ffc44f, #ef9d2a) !important; }
+  .stage-tab:nth-child(2) { background: linear-gradient(145deg, #83c957, #61ad47) !important; }
+  .stage-tab:nth-child(3) { background: linear-gradient(145deg, #55c5f3, #2b94d4) !important; }
+  .stage-tab:nth-child(4) { background: linear-gradient(145deg, #9b72f0, #7857cf) !important; }
+  .stage-tab:nth-child(5) { background: linear-gradient(145deg, #ffad58, #f27638) !important; }
+  .stage-tab:nth-child(6) { background: linear-gradient(145deg, #ff83ad, #eb4f7b) !important; }
+  .stage-tab:nth-child(7) { background: linear-gradient(145deg, #ff895e, #e95e3c) !important; }
+
   .stage-tab:nth-child(1) {
-    transform: translateY(86px) rotate(-12deg);
+    transform: translateY(96px) rotate(-12deg);
   }
 
   .stage-tab:nth-child(2) {
-    transform: translateY(28px) rotate(-5deg);
+    transform: translateY(36px) rotate(-5deg);
   }
 
   .stage-tab:nth-child(3) {
@@ -1525,27 +1630,37 @@ button {
   }
 
   .stage-tab:nth-child(7) {
-    transform: translateY(86px) rotate(12deg);
+    transform: translateY(96px) rotate(12deg);
   }
 
   .stage-tab.active::after {
-    bottom: -26px;
+    bottom: -4px;
+    opacity: 0.96;
+  }
+
+  .stage-tab.active {
+    filter: none;
+    outline: 0;
   }
 
   .vr-card {
-    width: min(790px, 96%);
-    margin-top: 6px;
-    padding: 8px;
-    border-radius: 28px;
+    position: absolute;
+    left: 0;
+    bottom: 154px;
+    z-index: 18;
+    width: 390px;
+    margin: 0;
+    padding: 6px;
+    border-radius: 22px;
     background: rgba(255, 255, 255, 0.9);
-    transform: translateX(38px);
+    transform: none;
   }
 
   .vr-window {
-    height: min(43vh, 412px);
-    min-height: 360px;
-    border-width: 5px;
-    border-radius: 22px;
+    height: 220px;
+    min-height: 220px;
+    border-width: 4px;
+    border-radius: 18px;
   }
 
   .scene-school,
@@ -1576,26 +1691,79 @@ button {
   }
 
   .vr-center-mark {
-    width: 116px;
-    height: 116px;
-    font-size: 31px;
+    width: 76px;
+    height: 76px;
+    font-size: 22px;
   }
 
   .future-scene-label {
-    left: 18px;
-    bottom: 18px;
+    left: 12px;
+    bottom: 12px;
+    max-width: 185px;
+    font-size: 11px;
   }
 
   .future-person {
-    bottom: 24px;
+    bottom: 12px;
+  }
+
+  .future-head {
+    width: 38px;
+    height: 38px;
+  }
+
+  .future-body {
+    height: 58px;
+  }
+
+  .future-body .jacket {
+    height: 43px;
+  }
+
+  .future-person small {
+    font-size: 10px;
+  }
+
+  .vr-badge {
+    top: 10px;
+    left: 10px;
+    padding: 6px 9px;
+    font-size: 12px;
+  }
+
+  .vr-tools {
+    top: 9px;
+    right: 9px;
+  }
+
+  .vr-tools span {
+    width: 30px;
+    height: 30px;
+  }
+
+  .vr-dock {
+    right: 10px;
+    bottom: 10px;
+    gap: 6px;
+  }
+
+  .vr-dock button {
+    width: 38px;
+    height: 38px;
+    font-size: 10px;
   }
 
   .accelerator {
-    width: min(790px, 96%);
-    margin-top: 10px;
+    position: absolute;
+    right: 0;
+    bottom: 154px;
+    z-index: 19;
+    width: calc(100% - 420px);
+    max-width: 720px;
+    margin-top: 0;
     border-radius: 22px;
     background: rgba(246, 251, 255, 0.9);
-    transform: translateX(38px);
+    transform: none;
   }
 
   .robot-panel {
@@ -1688,8 +1856,11 @@ button {
     grid-template-columns: 280px minmax(790px, 1fr) 330px;
   }
 
-  .vr-card,
   .accelerator {
-    width: 790px;
+    max-width: 760px;
+  }
+
+  .vr-card {
+    width: 390px;
   }
 }
